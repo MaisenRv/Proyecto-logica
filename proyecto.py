@@ -1,11 +1,12 @@
+from os import system
+system("cls")
 
 tamano = int(input("Elige el tamaño del canino\n 1 para pequeño\n 2 para mediano\n 3 para grande\n"))
-
-peso_alimento = 10
-peso_agua = 10
+peso_alimento = 6.2
+peso_agua = 0.3
 porcion = None
 porcion_bebida = None
-tiempo = 1
+tiempo = int(input("Que hora del dias es: "))
 
 ALIMENTO_MAX = 10
 BEBIDA_MAX = 10
@@ -24,10 +25,8 @@ elif (tamano == 3):
 else:
     print("valor no valido")
 
-
 def alarma():
     print("Debe abastecer el alimento o el liquido del dispositivo")
-
 
 def alimentar():
     global peso_alimento
@@ -36,13 +35,14 @@ def alimentar():
     if (peso_alimento < 0.5 or peso_agua < 0.5):
         alarma()
         tipo = int(input("Que desea abastecer\n 1 para alimento \n 2 para agua\n"))
-        cantidad = float(input("Cuanto desea abastecer"))
+        cantidad = float(input("Cuanto desea abastecer: "))
 
         abastecer(tipo, cantidad)
-    else:
-        peso_alimento = peso_alimento - porcion
-        peso_agua = peso_agua - porcion_bebida
+        return
 
+    peso_alimento = peso_alimento - porcion
+    peso_agua = peso_agua - porcion_bebida
+    print("Alimentado!\n")
 
 def abastecer(tipo, cantidad):
     global peso_alimento
@@ -60,9 +60,11 @@ def abastecer(tipo, cantidad):
         print("La cantidad excede la capacidad maxima")
         print("Cantidad de alimento en este momento: ", peso_alimento)
         print("Cantidad de agua en este momento: ", peso_agua)
+        return
       
     else:
         print("valor no valido")
+    print("Alimento",peso_alimento,"\nAgua", peso_agua)
 
 if(tiempo == 13):
     alimentar()
